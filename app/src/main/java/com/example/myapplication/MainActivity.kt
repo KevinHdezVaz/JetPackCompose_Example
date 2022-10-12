@@ -20,6 +20,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.ui.components.CountryIso
 import com.example.myapplication.ui.screens.DetailScreen
 import com.example.myapplication.ui.screens.FeedScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -39,8 +40,12 @@ class MainActivity : ComponentActivity() {
             composable(route = "feed") {
                 FeedScreen(navController)
             }
-            composable(route = "detail") {
-                DetailScreen( )
+            composable(route = "detail/{countryIso}") {
+                backStackEntry->
+
+                val countryIsoString = backStackEntry.arguments?.getString("countryIso") ?: "COL"
+                val countryIso = CountryIso.valueOf(countryIsoString)
+                DetailScreen(navController, countryIso   )
             }
         }
     }

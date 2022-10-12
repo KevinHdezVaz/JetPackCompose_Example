@@ -6,18 +6,18 @@ package com.example.myapplication.ui.screens
  import androidx.compose.foundation.lazy.LazyColumn
  import androidx.compose.foundation.lazy.items
  import androidx.compose.material.MaterialTheme
+ import androidx.compose.material.Scaffold
  import androidx.compose.material.Surface
  import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+ import androidx.compose.material.icons.Icons
+ import androidx.compose.material.icons.filled.ArrowBack
+ import androidx.compose.runtime.Composable
  import androidx.compose.ui.Modifier
  import androidx.compose.ui.tooling.preview.Preview
  import androidx.compose.ui.unit.dp
  import androidx.navigation.NavController
  import androidx.navigation.compose.rememberNavController
- import com.example.myapplication.ui.components.BodyText
- import com.example.myapplication.ui.components.CountryIso
- import com.example.myapplication.ui.components.ProductCard
- import com.example.myapplication.ui.components.TitleText
+ import com.example.myapplication.ui.components.*
  import com.example.myapplication.ui.theme.MyApplicationTheme
 
 
@@ -29,7 +29,9 @@ val list = listOf<CountryIso>(
 
 
     MyApplicationTheme{
+
         Surface(color = MaterialTheme.colors.background){
+
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)){
 
                 item{
@@ -47,7 +49,7 @@ val list = listOf<CountryIso>(
                     country = country,
 
                 ){
-                    navController.navigate("detail"){
+                    navController.navigate("detail/${country.iso}"){
                             launchSingleTop=true
                         }
                 }
