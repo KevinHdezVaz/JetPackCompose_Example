@@ -16,46 +16,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.Navigation
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.ui.screens.DetailScreen
+import com.example.myapplication.ui.screens.FeedScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HelloCompose()
+            NavigationHost()
         }
     }
-}
 
-@Composable
-fun HelloCompose() {
-    Card(
-        elevation = 10.dp,
-        shape = RoundedCornerShape(20.dp)
-
-    ) {
-        Column(
-            modifier = Modifier.padding(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-
-            Image(painterResource(id = R.drawable.imagen), contentDescription = null
-                ,Modifier.size(40.dp,40.dp))
-            Text("HOLASDFASD", style = MaterialTheme.typography.h4)
-            Text("Esta es una copia de flutter krnal")
-
-            Button(onClick = { }, modifier = Modifier.padding(top = 16.dp)) {
-                Text("saca")
-
+    @Composable
+    fun NavigationHost(){
+        val navController = rememberNavController()
+        NavHost(navController, startDestination = "feed") {
+            composable(route = "feed") {
+                FeedScreen(navController)
+            }
+            composable(route = "detail") {
+                DetailScreen( )
             }
         }
     }
-
- }
-@Preview(
-    showBackground = true
-)
- @Composable
-fun HelloComposePreview() {
-     HelloCompose()
 }
